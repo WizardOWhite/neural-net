@@ -1,10 +1,13 @@
 #include "Node.h"
+#include <cmath>
 
-Node::Node(int numInputs) : _input(0), _output(0) {
+Node::Node(int numInputs, int layerNumber, int nodeNumber) : _input(0), _output(0), _nodePosition{layerNumber, nodeNumber} {
 	for(int i = 0; i < numInputs; i++) {
 		auto randomWeight = static_cast<double>(std::rand()) / RAND_MAX;
 		inputWeights.emplace_back(Weight{randomWeight, 0});
-		//std::cout << "Random weight: " << randomWeight << std::endl;
+		std::cout << "Random weight: " << randomWeight
+		<< " || Layer: " << layerNumber
+		<< " || Node: " << nodeNumber << std::endl;
 	}
 }
 
@@ -18,5 +21,5 @@ void Node::FeedForward(const std::vector<Node>& prevLayer) {
 		_input += (inputWeights.at(i).weight * prevLayer.at(i)._output);
 	}
 	//Activation function
-	//_output = _input *
+	_output = tanh(_input);
 }

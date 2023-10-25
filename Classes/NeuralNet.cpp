@@ -6,14 +6,19 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 		Net.emplace_back(layer);
 		for(int j = 0; j < topology.at(i); j++) {
 			if(i == 0)
-				layer.emplace_back(0);
+				layer.emplace_back(0, i+1, j+1);
 			else
-				layer.emplace_back(topology.at(i-1));
+				layer.emplace_back(topology.at(i-1), i+1, j+1);
 		}
 	}
 }
 
 void NeuralNet::FeedInputs(const std::vector<double> &inputValues) {
+	if(inputValues.size() != Net.at(0).size()) {
+		std::cout << "Input size: " + inputValues.size()
+		<< " not equal to first layer size: " + Net.at(0).size() << std::endl;
+		exit(1);
+	}
 	for(int i = 0; i < inputValues.size(); i++) {
 		Net.at(0).at(i).SetInput(inputValues.at(i));
 	}

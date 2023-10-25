@@ -9,13 +9,19 @@ struct Weight {
 	double deltaWeight;
 };
 
+struct Position {
+	int layerNumber;
+	int nodeNumber;
+};
+
 class Node {
 private:
 	double _input;
 	double _output;
 	std::vector<Weight> inputWeights;
 public:
-	Node(int numInputs);
+	Position _nodePosition;
+	Node(int numInputs, int layerNumber, int nodeNumber);
 	void SetInput(double input);
 	void FeedForward(const std::vector<Node>& prevLayer);
 };
