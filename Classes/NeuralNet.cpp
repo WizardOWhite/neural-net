@@ -14,7 +14,7 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 }
 
 void NeuralNet::FeedInputs(const std::vector<double> &inputValues) {
-	for(int i = 0; i < inputValues.size() - numBiasNodes; i++) {
+	for(int i = 0; i < inputValues.size(); i++) {
 		Net.at(0).at(i).SetInput(inputValues.at(i));
 	}
 
@@ -22,7 +22,7 @@ void NeuralNet::FeedInputs(const std::vector<double> &inputValues) {
 //For each layer after the first, feed the inputs and calculate the outputs
 void NeuralNet::FeedForward() {
 	for (int i = 1; i < Net.size(); i++) {
-		for(int j = 0; i < Net.at(i).size() - 1; j++) {
+		for(int j = 0; i < Net.at(i).size(); j++) {
 			Net.at(i).at(j).FeedForward(Net.at(i));
 		}
 	}
