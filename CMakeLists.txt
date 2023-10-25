@@ -3,4 +3,4 @@ project(BasicNeuralNet)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(BasicNeuralNet main.cpp)
+add_executable(BasicNeuralNet main.cpp Classes/Node.cpp Classes/NeuralNet.cpp Classes/NeuralNet.h)
