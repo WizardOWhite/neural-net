@@ -9,6 +9,7 @@ private:
 	std::vector<double> _inputValues;
 	std::vector<double> _outputValues;
 	std::vector<double> _expectedOutputValues;
+	//TODO: reimplement bias nodes.
 	int numBiasNodes = 1;
 public:
 	NeuralNet(const std::vector<int>& topology);
