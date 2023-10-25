@@ -38,7 +38,10 @@ void NeuralNet::BackPropagation(const std::vector<double> &targets) {
 }
 
 std::vector<double> NeuralNet::GetResults() {
-	return std::vector<double>();
+	std::vector<double> outputValues;
+	for (const auto &node: Net.at(Net.size()-1)) {
+		outputValues.emplace_back(node.GetOutput());
+	}
 }
 
 

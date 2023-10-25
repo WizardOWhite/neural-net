@@ -24,6 +24,7 @@ public:
 	Node(int numInputs, int layerNumber, int nodeNumber);
 	void SetInput(double input);
 	void FeedForward(const std::vector<Node>& prevLayer);
+	double GetOutput() const;
 };
 
 #endif //BASICNEURALNET_NODE_H

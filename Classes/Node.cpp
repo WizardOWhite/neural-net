@@ -23,3 +23,7 @@ void Node::FeedForward(const std::vector<Node>& prevLayer) {
 	//Activation function
 	_output = tanh(_input);
 }
+
+double Node::GetOutput() const {
+	return _output;
+}
