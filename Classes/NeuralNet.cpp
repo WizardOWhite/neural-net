@@ -2,7 +2,14 @@
 
 NeuralNet::NeuralNet(const std::vector<int>& topology) {
 	for(int i = 0; i < topology.size(); i++) {
-		Net.emplace_back(topology.at(i));
+		std::vector<Node> layer;
+		Net.emplace_back(layer);
+		for(int j = 0; j < topology.at(i); j++) {
+			if(i == 0)
+				layer.emplace_back(0);
+			else
+				layer.emplace_back(topology.at(i-1));
+		}
 	}
 }
 
@@ -13,7 +20,7 @@ void NeuralNet::FeedInputs(const std::vector<double> &inputValues) {
 
 }
 //For each layer after the first, feed the inputs and calculate the outputs
-void NeuralNet::FeedForward(const std::vector<double> &inputs) {
+void NeuralNet::FeedForward() {
 	for (int i = 1; i < Net.size(); i++) {
 		for(int j = 0; i < Net.at(i).size() - 1; j++) {
 			Net.at(i).at(j).FeedForward(Net.at(i));

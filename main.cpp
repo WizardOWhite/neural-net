@@ -10,5 +10,7 @@ class NeuralNet;
 int main() {
 	std::vector<int> netTopology {3, 3, 3};
 	NeuralNet neuralNet(netTopology);
+	neuralNet.FeedInputs();
+	neuralNet.FeedForward();
 	return 0;
 }

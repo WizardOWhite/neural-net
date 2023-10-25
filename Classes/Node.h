@@ -13,9 +13,9 @@ class Node {
 private:
 	double _input;
 	double _output;
-	std::vector<Weight> weights;
+	std::vector<Weight> inputWeights;
 public:
-	Node();
+	Node(int numInputs);
 	void SetInput(double input);
 	void FeedForward(const std::vector<Node>& prevLayer);
 };
