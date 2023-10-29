@@ -1,6 +1,12 @@
 #include "NeuralNet.h"
 
 NeuralNet::NeuralNet(const std::vector<int>& topology) {
+	for (const auto &item: topology) {
+		if(item <= 0) {
+			std::cout << "Invalid topology." << std::endl;
+			exit(1);
+		}
+	}
 	for(int i = 0; i < topology.size(); i++) {
 		std::vector<Node> layer;
 		Net.emplace_back(layer);
