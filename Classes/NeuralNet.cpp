@@ -1,3 +1,4 @@
+#include <cmath>
 #include "NeuralNet.h"
 
 NeuralNet::NeuralNet(const std::vector<int>& topology) {
@@ -43,7 +44,16 @@ void NeuralNet::FeedForward() {
 	}
 }
 
-void NeuralNet::BackPropagation(const std::vector<double> &targets) {
+void NeuralNet::BackPropagation() {
+	_outputValues = GetResults();
+	double rmsError = 0;
+	for (int i = 0; i < _outputValues.size(); i++) {
+		double error = (_expectedOutputValues[i] - _outputValues[i]);
+		error = error * error;
+		rmsError += error;
+	}
+	rmsError = rmsError / _outputValues.size();
+	rmsError = sqrt(rmsError);
 
 }
 

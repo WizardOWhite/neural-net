@@ -15,7 +15,7 @@ public:
 	NeuralNet(const std::vector<int>& topology);
 	void FeedInputs(const std::vector<double>& inputValues);
 	void FeedForward();
-	void BackPropagation(const std::vector<double>& targets);
+	void BackPropagation();
 	std::vector<double> GetResults();
 };
 
