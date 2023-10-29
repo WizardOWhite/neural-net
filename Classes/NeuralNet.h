@@ -13,7 +13,8 @@ private:
 	int numBiasNodes = 1;
 public:
 	NeuralNet(const std::vector<int>& topology);
-	void FeedInputs(const std::vector<double>& inputValues);
+	void SetInputs(const std::vector<double>& inputValues);
+	void SetExpectedOutputs(const std::vector<double>& expectedOutputs);
 	void FeedForward();
 	void BackPropagation();
 	std::vector<double> GetResults();
