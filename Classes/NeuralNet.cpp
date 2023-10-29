@@ -9,13 +9,17 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 	}
 	for(int i = 0; i < topology.size(); i++) {
 		std::vector<Node> layer;
-		Net.emplace_back(layer);
-		for(int j = 0; j < topology.at(i); j++) {
-			if(i == 0)
-				layer.emplace_back(0, i+1, j+1);
-			else
-				layer.emplace_back(topology.at(i-1), i+1, j+1);
+		for(int j = 0; j < topology[i]; j++) {
+			if(i == 0) {
+				Node newNode(0, i + 1, j + 1);
+				layer.push_back(newNode);
+			}
+			else {
+				Node newNode(topology[i - 1], i + 1, j + 1);
+				layer.push_back(newNode);
+			}
 		}
+		Net.push_back(layer);
 	}
 }
 
