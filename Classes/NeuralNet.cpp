@@ -25,8 +25,8 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 
 void NeuralNet::FeedInputs(const std::vector<double> &inputValues) {
 	if(inputValues.size() != Net.at(0).size()) {
-		std::cout << "Input size: " + inputValues.size()
-		<< " not equal to first layer size: " + Net.at(0).size() << std::endl;
+		std::cout << "Input size: " << inputValues.size()
+		<< " not equal to first layer size: " << Net.at(0).size() << std::endl;
 		exit(1);
 	}
 	for(int i = 0; i < inputValues.size(); i++) {
