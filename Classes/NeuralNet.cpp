@@ -64,5 +64,13 @@ std::vector<double> NeuralNet::GetResults() {
 	}
 }
 
+void NeuralNet::SetExpectedOutputs(const std::vector<double> &expectedOutputs) {
+	if(expectedOutputs.size() != Net[Net.size()-1].size()) {
+		std::cout << "Output size not equal to last layer size." << std::endl;
+		exit(1);
+	}
+	_expectedOutputValues = expectedOutputs;
+}
+
 
 
