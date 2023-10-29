@@ -12,11 +12,11 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 		std::vector<Node> layer;
 		for(int j = 0; j < topology[i]; j++) {
 			if(i == 0) {
-				Node newNode(0, i + 1, j + 1);
+				Node newNode(0, i, j);
 				layer.push_back(newNode);
 			}
 			else {
-				Node newNode(topology[i - 1], i + 1, j + 1);
+				Node newNode(topology[i - 1], i, j);
 				layer.push_back(newNode);
 			}
 		}
@@ -55,13 +55,34 @@ void NeuralNet::BackPropagation() {
 	rmsError = rmsError / _outputValues.size();
 	rmsError = sqrt(rmsError);
 
+	auto &outputLayer = Net[Net.size()-1];
+	for(int i = 0; i < outputLayer.size(); i++) {
+		outputLayer[i].CalculateOutputGradients(_expectedOutputValues[i]);
+	}
+
+	for(int i = Net.size() - 2; i > 0; i--) {
+		auto &hiddenLayer = Net[i];
+		auto &nextLayer = Net[i+1];
+		for (auto &node: hiddenLayer) {
+			node.CalculateHiddenGradients(nextLayer);
+		}
+	}
+
+	for(int i = Net.size() - 1; i > 0; i--) {
+		auto &currentLayer = Net[i];
+		auto &prevLayer = Net[i-1];
+		for (auto &node: currentLayer) {
+			node.UpdateWeights(prevLayer);
+		}
+	}
 }
 
 std::vector<double> NeuralNet::GetResults() {
 	std::vector<double> outputValues;
-	for (const auto &node: Net.at(Net.size()-1)) {
-		outputValues.emplace_back(node.GetOutput());
+	for (const auto &node: Net[Net.size()-1]) {
+		outputValues.push_back(node.GetOutput());
 	}
+	return outputValues;
 }
 
 void NeuralNet::SetExpectedOutputs(const std::vector<double> &expectedOutputs) {
