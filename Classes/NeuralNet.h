@@ -9,8 +9,8 @@ private:
 	std::vector<double> _inputValues;
 	std::vector<double> _outputValues;
 	std::vector<double> _expectedOutputValues;
-	//TODO: reimplement bias nodes.
 	int numBiasNodes = 1;
+	double biasNodeBias = 1.0;
 public:
 	NeuralNet(const std::vector<int>& topology);
 	void SetInputs(const std::vector<double>& inputValues);
@@ -19,6 +19,5 @@ public:
 	void BackPropagation();
 	std::vector<double> GetResults();
 };
-
 
 #endif //BASICNEURALNET_NEURALNET_H

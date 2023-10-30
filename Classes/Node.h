@@ -25,7 +25,7 @@ private:
 public:
 	Position _nodePosition;
 	Node(int numInputs, int layerNumber, int nodeNumber);
-	void SetInput(double input);
+	void SetOutput(double input);
 	void FeedForward(const std::vector<Node>& prevLayer);
 	double GetOutput() const;
 	void CalculateOutputGradients(double expectedOutput);

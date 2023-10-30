@@ -11,8 +11,7 @@ Node::Node(int numInputs, int layerNumber, int nodeNumber) : _input(0), _output(
 	}
 }
 
-//The first layer should just feed inputs into the next layer, so values go straight to output.
-void Node::SetInput(double input) {
+void Node::SetOutput(double input) {
 	_output = input;
 }
 
@@ -55,7 +54,7 @@ double Node::ActivationFunctionDerivative(double output) {
 double Node::SumOfDOW(std::vector<Node> &nextLayer) {
 	double sum = 0;
 
-	for(int i = 0; i < nextLayer.size(); i++) {
+	for(int i = 0; i < nextLayer.size() - 1; i++) {
 		sum += nextLayer[i].GetInputWeight(_nodePosition.nodeNumber) * nextLayer[i]._gradient;
 	}
 	return sum;
