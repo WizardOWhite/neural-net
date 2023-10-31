@@ -5,9 +5,9 @@ Node::Node(int numInputs, int layerNumber, int nodeNumber) : _input(0), _output(
 	for(int i = 0; i < numInputs; i++) {
 		auto randomWeight = static_cast<double>(std::rand()) / RAND_MAX;
 		inputWeights.emplace_back(Weight{randomWeight, 0});
-		std::cout << "Random weight: " << randomWeight
+		/*std::cout << "Random weight: " << randomWeight
 		<< " || Layer: " << layerNumber + 1
-		<< " || Node: " << nodeNumber + 1 << std::endl;
+		<< " || Node: " << nodeNumber + 1 << std::endl;*/
 	}
 }
 
@@ -21,7 +21,7 @@ void Node::FeedForward(const std::vector<Node>& prevLayer) {
 	}
 	//Activation function
 	_output = tanh(_input);
-	std::cout << _nodePosition.layerNumber << ":" << _nodePosition.nodeNumber << ": " << _input << " -> " << _output << std::endl;
+	//std::cout << _nodePosition.layerNumber << ":" << _nodePosition.nodeNumber << ": " << _input << " -> " << _output << std::endl;
 }
 
 double Node::GetOutput() const {
@@ -39,7 +39,10 @@ void Node::UpdateWeights(std::vector<Node> &prevLayer) {
 		double oldDeltaWeight = inputWeights[i].deltaWeight;
 
 		double newDeltaWeight = learningRate * node._output * _gradient + alpha * oldDeltaWeight;
+		inputWeights[i].deltaWeight = newDeltaWeight;
+		inputWeights[i].weight += newDeltaWeight;
 	}
+
 }
 
 void Node::CalculateOutputGradients(double expectedOutput) {
