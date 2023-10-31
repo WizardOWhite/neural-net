@@ -1,6 +1,3 @@
-//
-// Created by lolgetreKt on 10/30/2023.
-//
 #include "DataInputFile.h"
 
 DataInputFile::DataInputFile(const std::string& inputFileName) {

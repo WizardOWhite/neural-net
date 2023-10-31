@@ -1,10 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <fstream>
-#include <sstream>
 #include "algorithm"
 
-#include "Classes/Node.h"
 #include "Classes/NeuralNet.h"
 #include "Classes/DataInputFile.h"
 
