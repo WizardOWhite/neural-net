@@ -33,9 +33,9 @@ NeuralNet::NeuralNet(const std::vector<int>& topology) {
 }
 
 void NeuralNet::SetInputs(const std::vector<double> &inputValues) {
-	if(inputValues.size() != Net.at(0).size() - numBiasNodes) {
+	if(inputValues.size() != Net[0].size() - numBiasNodes) {
 		std::cout << "Input size: " << inputValues.size()
-		<< " not equal to first layer size: " << Net.at(0).size() << std::endl;
+		<< " not equal to first layer size: " << Net[0].size() << std::endl;
 		exit(1);
 	}
 	int i = 0;
@@ -46,8 +46,8 @@ void NeuralNet::SetInputs(const std::vector<double> &inputValues) {
 //For each layer after the first, feed the inputs and calculate the outputs
 void NeuralNet::FeedForward() {
 	for (int i = 1; i < Net.size(); i++) {
-		for(int j = 0; j < Net.at(i).size() - numBiasNodes; j++) {
-			Net.at(i).at(j).FeedForward(Net.at(i - 1));
+		for(int j = 0; j < Net[i].size() - numBiasNodes; j++) {
+			Net[i][j].FeedForward(Net.at(i - 1));
 		}
 	}
 }

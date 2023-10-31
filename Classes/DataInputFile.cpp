@@ -36,7 +36,7 @@ std::vector<double> DataInputFile::GetInputs() {
 	std::stringstream ss(line);
 	ss >> label;
 	if(label.compare("input:") != 0 || ss.eof()) {
-		std::cout << "Incorrect file formatting at: " << label << std::endl;
+		std::cout << "Incorrect file formatting at i: " << label << std::endl;
 		exit(1);
 	}
 	while(!ss.eof()) {
@@ -55,7 +55,7 @@ std::vector<double> DataInputFile::GetTargets() {
 	std::stringstream ss(line);
 	ss >> label;
 	if(label.compare("target:") != 0 || ss.eof()) {
-		std::cout << "Incorrect file formatting at: " << label << std::endl;
+		std::cout << "Incorrect file formatting at o: " << label << std::endl;
 		exit(1);
 	}
 	while(!ss.eof()) {

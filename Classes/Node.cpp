@@ -16,8 +16,9 @@ void Node::SetOutput(double input) {
 }
 
 void Node::FeedForward(const std::vector<Node>& prevLayer) {
+	_input = 0;
 	for(int i = 0; i < prevLayer.size(); i ++) {
-		_input += (inputWeights.at(i).weight * prevLayer.at(i)._output);
+		_input += (inputWeights[i].weight * prevLayer.at(i)._output);
 	}
 	//Activation function
 	_output = tanh(_input);
@@ -38,7 +39,7 @@ void Node::UpdateWeights(std::vector<Node> &prevLayer) {
 		Node &node = prevLayer[i];
 		double oldDeltaWeight = inputWeights[i].deltaWeight;
 
-		double newDeltaWeight = learningRate * node._output * _gradient + alpha * oldDeltaWeight;
+		double newDeltaWeight = (learningRate * node._output * _gradient) + (alpha * oldDeltaWeight);
 		inputWeights[i].deltaWeight = newDeltaWeight;
 		inputWeights[i].weight += newDeltaWeight;
 	}
